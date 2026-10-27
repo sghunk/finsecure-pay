@@ -19,7 +19,7 @@ class TransactionControllerTests {
     void testHealthEndpoint() {
         ResponseEntity<Map> response = restTemplate.getForEntity("/health", Map.class);
         assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
-        assertThat(response.getBody().get("status")).isEqualTo("DOWN");
+        assertThat(response.getBody().get("status")).isEqualTo("UP");
     }
 
     @Test
