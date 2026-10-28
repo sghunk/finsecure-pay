@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # Service 1: Core Capstone Transaction Service Engine
+  # Core
   pay-service:
     image: hunky1968/finsecure-pay:v1
     container_name: pay-cluster-service
@@ -9,14 +9,14 @@ services:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      # Link parameters mapping targets straight to our data container
+      # Mapping
       - DB_HOST=database-service
     depends_on:
       - database-service
     networks:
       - finsecure-network
 
-  # Service 2: Isolated Persistent Data Layer Storage Engine
+  # Isolated Persistent Data Layer Storage
   database-service:
     image: postgres:15-alpine
     container_name: pay-cluster-db
@@ -29,7 +29,7 @@ services:
     networks:
       - finsecure-network
 
-# Networking and Persistent Data Storage Volume Backends
+# Networking 
 networks:
   finsecure-network:
     driver: bridge

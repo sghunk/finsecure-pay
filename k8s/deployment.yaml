@@ -22,7 +22,7 @@ spec:
         envFrom:
         - configMapRef:
             name: pay-service-config
-        # Requirement 4: Health Probes Setup
+        # Health Probes Setup
         livenessProbe:
           httpGet:
             path: /health
