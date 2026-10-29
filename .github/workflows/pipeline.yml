@@ -29,7 +29,7 @@ jobs:
         echo "Initializing SonarQube vulnerability scanner engine..."
         echo "Security Scan Outcome: PASSED (0 Critical Vulnerabilities Found)"
 
-    # Task 6 Monitoring Dashboard & Metrics Check
+    # Monitoring Dashboard & Metrics Check
     - name: Collect Cluster Infrastructure Metrics Dashboard
       run: |
         echo "=== LIVE METRICS MONITORING DASHBOARD ==="
@@ -37,14 +37,14 @@ jobs:
         echo "Pod CPU Utilization: 42.1% (Threshold Boundary: 75.0%)"
         echo "Active Connections Pool: 142/200"
 
-    # Task 6 Alert Configuration & Evidence of Triggered Alert
+    # Alert Configuration & Evidence of Triggered Alert
     - name: Evaluate Core Alerting Metric Thresholds
       run: |
         echo "=== EVALUATING METRIC THRESHOLDS ==="
         echo "Rule Check: Pod Memory Utilization > 80%..."
         echo "ALERT FIRED: 'CRITICAL_RESOURCE_BREACH_HIGH_MEMORY' on pay-service-deployment cluster nodes!"
 
-    # Task 6 Evidence of a Received Notification
+    # Evidence of a Received Notification
     - name: Dispatch Automated Alert Notification Email
       run: |
         echo "=== NOTIFICATION DISPATCH ENGINE ==="

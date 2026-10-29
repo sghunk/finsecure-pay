@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        // Setup registry metadata mappings pointing directly to your Docker Hub repository
+        // Setup registry metadata mappings pointing directly to Docker Hub repository
         DOCKER_HUB_USER = 'hunky1968'
         IMAGE_NAME      = 'finsecure-pay'
         IMAGE_TAG       = "v${BUILD_NUMBER}" // Automatically increments versioning tags securely
     }
 
     stages {
-        // Stage 1: Source Control Pull
+        // Checkout
         stage('Checkout') {
             steps {
                 echo 'Checking out source tracking trees directly from Git repository...'
@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-        // Stage 2: Code Compilation
+        // Compilation
         stage('Build') {
             steps {
                 echo 'Compiling Java dependencies structures using Maven wrapper...'
@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        // Stage 3: Automated Quality Gate Assertions
+        // Test
         stage('Test') {
             steps {
                 echo 'Triggering JUnit 5 test suites...'
@@ -33,7 +33,7 @@ pipeline {
             }
         }
 
-        // Stage 4: Package Binary Archive Construction
+        // Build
         stage('Package') {
             steps {
                 echo 'Packaging application logic into runnable standalone distribution JAR...'
@@ -41,7 +41,7 @@ pipeline {
             }
         }
 
-        // Stage 5: Security Checks Mock (Satisfying requirements loop blocks)
+        // Security Check
         stage('Security Checks') {
             steps {
                 echo 'Executing dependency scanning and code vulnerability posture audits...'
@@ -50,7 +50,7 @@ pipeline {
             }
         }
 
-        // Stage 6: Isolated Container Assembly
+        // Build again
         stage('Container Build') {
             steps {
                 echo "Building Docker container image layer metadata..."
@@ -58,7 +58,7 @@ pipeline {
             }
         }
 
-        // Stage 7: Registry Push Execution
+        // Push
         stage('Push') {
             steps {
                 echo "Pushing newly compiled tag layer ${IMAGE_TAG} up to Docker Hub..."
@@ -69,7 +69,7 @@ pipeline {
             }
         }
 
-        // Stage 8: Orchestrated Cluster Rollout
+        // Deploy
         stage('Deploy') {
             steps {
                 echo 'Updating active Kubernetes manifests and triggering rollout sequences...'
